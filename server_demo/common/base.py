@@ -5,7 +5,6 @@ from dateutil.tz import tzlocal
 from datetime import datetime
 from peewee import AutoField, DateTimeField, SQL
 from playhouse.db_url import connect as db_connect
-print(os.environ.get('DATABASE_URL', None), 'pppppppppppppppppppppp')
 
 database = db_connect(os.environ.get('DATABASE_URL', None))
 
