@@ -1,0 +1,9 @@
+Cython
+tornado
+marshmallow
+peewee
+psycopg2-binary
+ujson
+honcho
+python-dateutil
+gunicorn
