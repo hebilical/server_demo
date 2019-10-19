@@ -1,10 +1,10 @@
 # -*- coding: UTF-8 -*-
-from tornado.web import RequestHandler
 from server_demo.common.schema import schema
 from server_demo.schema.demo import user_schare
 from server_demo.controller.demo import trace_new,  get_suggest_users
+from server_demo.common.base import _BaseHandler
 
-class DemoHandler(RequestHandler):
+class DemoHandler(_BaseHandler):
     route = '/postWeibo'
 
     @schema(json=user_schare, reply=True)
@@ -13,7 +13,7 @@ class DemoHandler(RequestHandler):
         return dict(data='success')
 
 
-class GetShareUser(RequestHandler):
+class GetShareUser(_BaseHandler):
     route = '/suggest'
 
     @schema(query=user_schare, reply=True)
