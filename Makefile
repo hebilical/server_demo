@@ -1,3 +1,5 @@
+WITH_ENV = env `cat .env 2>/dev/null | xargs`
+
 setuptools:
 	@pip3 install -U pip==18.1
 	@pip3 install -U setuptools wheel
@@ -12,7 +14,9 @@ requirements-dev: requirements-dev.in
 compile-deps: setuptools requirements requirements-dev clean
 
 install-deps:
-	@pip3 install -r requirements-dev.txt -r requirements.txt
+	@[ -n "$(VIRTUAL_ENV)" ] || (echo 'out of virtualenv'; exit 1)
+	@$(WITH_ENV) pip3 install -U pip setuptools wheel
+	@$(WITH_ENV) pip3 install -r requirements-dev.txt
 
 clean:
 	@rm -f dist/*
@@ -30,3 +34,10 @@ init: compile-deps
 lint:
 	@echo linting code ...
 	@flake8
+
+test:
+	@[ -n "$(VIRTUAL_ENV)" ] || (echo 'out of virtualenv'; exit 1)
+	@ coverage erase
+	@$(WITH_ENV) coverage run --omit=venv/* -m --append pytest tests -p no:warnings
+	@ coverage report --omit=tests*
+	@ coverage html --omit=tests*

@@ -25,6 +25,3 @@ def server_handle(io_loop=None):
     if io_loop is None:
         io_loop = IOLoop.current()
     io_loop.start()
-
-if __name__ == '__main__':
-    server_handle()

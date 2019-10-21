@@ -7,17 +7,17 @@ make dist
 pip install dist/server_demo-xxxx-.whl
 
 
-#安装后制定配置文件和bin：
+#安装后写好配置文件, 启动命令：
 
 
-honcho -e /home/myuser/code/server_demo/.env  run  /home/myuser/code/server_demo/venv/bin/server-demo
+honcho start
 
 
-#接口
+# 单元测试 ：
 
 
-'http://qjeq5x.natappfree.cc/postWeibo' method: post   json: {"userName": "userA","weiBoId": "3", "atUserList":["userC", "userD"]}
+honcho start(先启动服务)
 
 
 
-'http://qjeq5x.natappfree.cc/suggest?targetUsersName=userB&userName=userA'  method: get
+make  test(在另一个终端进行单元测试)
