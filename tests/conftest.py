@@ -25,8 +25,6 @@ def db_init():
             isinstance(table_md[c], type) and table_md[c].__module__ == table_module.__name__)]
             model_list.extend(simple_list)
     for model in model_list:
-        print(model.__dict__)
-        LOG.warning(f'ready to truncate table {model.__name__}')
         model.truncate_table()
 
 
