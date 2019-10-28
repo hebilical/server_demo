@@ -29,6 +29,8 @@ setup(
     entry_points={
         'console_scripts': [
             'server-demo = server_demo.main:server_handle',
+            'mq-productor = server_demo.common.mq_message:mq_productor',
+            'mq-consumer = server_demo.common.mq_message:mq_comsumer',
         ],
     },
 )
